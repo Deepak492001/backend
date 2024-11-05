@@ -2,12 +2,12 @@
 FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 
-# Copy the pom.xml file and download dependencies
+# Copy only the pom.xml and download dependencies to cache them
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
 # Copy the entire source code and build the project
-COPY src ./src
+COPY src src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Create a lightweight image with the built JAR file
