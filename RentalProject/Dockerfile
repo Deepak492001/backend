@@ -15,8 +15,7 @@ FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file from the build stage
-COPY --from=build /app/target/RentalProject-0.0.1-SNAPSHOT.jar RentalProject.jar
-
+COPY --from=build /app/target/*.jar RentalProject.jar
 # Expose the necessary port
 EXPOSE 8080
 
